@@ -9,7 +9,7 @@ from sumy.summarizers.lex_rank import LexRankSummarizer
 from textblob import TextBlob
 import nltk
 
-nltk.download('punkt')
+nltk.download('punkt',quiet=True)
 
 # Function to read transcript from DOCX file
 def read_transcript(docx_path):
