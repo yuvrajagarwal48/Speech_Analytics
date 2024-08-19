@@ -15,7 +15,7 @@ import nltk
 #     st.error("Could not install punkt")
 @st.cache(allow_output_mutation=True)
 def download_nltk_data():
-    nltk.download('punkt')
+    nltk.download('punkt',quiet=True)
     return True
 
 download_nltk_data()
