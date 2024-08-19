@@ -134,7 +134,7 @@ def give_analysis(file,speaker_names):
             speaker_text = extract_speaker_text(transcript, selected_speaker)
 
             # Analyze text for the speaker
-            analysis = analyze_text(speaker_text, duration_minutes=None)  # Set duration_minutes as None since it's not used
+            analysis = analyze_text(speaker_text)  # Set duration_minutes as None since it's not used
 
             # Correct grammar for the speaker
             corrected_text, grammar_matches = correct_grammar(speaker_text)
