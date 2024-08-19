@@ -22,7 +22,7 @@ download_nltk_data()
 try:
     nltk.data.load('tokenizers/punkt/PY3/english.pickle')
 except LookupError:
-    nltk.download('punkt')
+    nltk.download('punkt',quiet=True)
     nltk.data.load('tokenizers/punkt/PY3/english.pickle')
 
 
