@@ -11,7 +11,10 @@ import nltk
 
 @st.cache(allow_output_mutation=True)
 def download_nltk_data():
-    nltk.download('punkt', quiet=True)
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        nltk.download('punkt', quiet=True)
     return True
 
 download_nltk_data()
