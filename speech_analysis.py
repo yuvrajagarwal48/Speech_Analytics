@@ -8,7 +8,6 @@ from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
 from textblob import TextBlob
 import nltk
-from nltk import word_tokenize,sent_tokenize
 
 nltk.download('punkt',quiet=True)
 
