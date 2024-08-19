@@ -9,18 +9,19 @@ from sumy.summarizers.lex_rank import LexRankSummarizer
 from textblob import TextBlob
 import nltk
 
-# try:
-#     nltk.download('punkt',quiet=True)
-# except:
-#     st.error("Could not install punkt")
 @st.cache(allow_output_mutation=True)
 def download_nltk_data():
-    nltk.download('punkt',quiet=True)
+    nltk.download('punkt', quiet=True)
     return True
 
 download_nltk_data()
 
-nltk.data.load('tokenizers/punkt/PY3/english.pickle')
+try:
+    nltk.data.load('tokenizers/punkt/PY3/english.pickle')
+except LookupError:
+    nltk.download('punkt')
+    nltk.data.load('tokenizers/punkt/PY3/english.pickle')
+
 
 # Function to read transcript from DOCX file
 def read_transcript(docx_path):
