@@ -12,13 +12,13 @@ import spacy
 import subprocess
 
 # Try to load the spaCy model, and if not found, download it
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    st.warning("Downloading spaCy model 'en_core_web_sm'...")
-    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
-    nlp = spacy.load("en_core_web_sm")
-
+# try:
+#     nlp = spacy.load("en_core_web_sm")
+# except OSError:
+#     st.warning("Downloading spaCy model 'en_core_web_sm'...")
+#     subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+#     nlp = spacy.load("en_core_web_sm")
+spacy.cli.download("en_core_web_sm")
 nltk.download('punkt')
 
 # Function to read transcript from DOCX file
