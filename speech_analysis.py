@@ -9,7 +9,10 @@ from sumy.summarizers.lex_rank import LexRankSummarizer
 from textblob import TextBlob
 import nltk
 
-nltk.download('punkt',quiet=True)
+try:
+    nltk.download('punkt',quiet=True)
+except:
+    st.error("Could not install punkt")
 
 # Function to read transcript from DOCX file
 def read_transcript(docx_path):
@@ -134,7 +137,7 @@ def give_analysis(file,speaker_names):
             speaker_text = extract_speaker_text(transcript, selected_speaker)
 
             # Analyze text for the speaker
-            analysis = analyze_text(speaker_text)  # Set duration_minutes as None since it's not used
+            analysis = analyze_text(speaker_text)  
 
             # Correct grammar for the speaker
             corrected_text, grammar_matches = correct_grammar(speaker_text)
