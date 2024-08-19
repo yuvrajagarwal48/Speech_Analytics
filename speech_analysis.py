@@ -20,6 +20,8 @@ def download_nltk_data():
 
 download_nltk_data()
 
+nltk.data.load('tokenizers/punkt/PY3/english.pickle')
+
 # Function to read transcript from DOCX file
 def read_transcript(docx_path):
     doc = Document(docx_path)
