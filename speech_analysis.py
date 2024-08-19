@@ -9,10 +9,16 @@ from sumy.summarizers.lex_rank import LexRankSummarizer
 from textblob import TextBlob
 import nltk
 
-try:
-    nltk.download('punkt',quiet=True)
-except:
-    st.error("Could not install punkt")
+# try:
+#     nltk.download('punkt',quiet=True)
+# except:
+#     st.error("Could not install punkt")
+@st.cache(allow_output_mutation=True)
+def download_nltk_data():
+    nltk.download('punkt')
+    return True
+
+download_nltk_data()
 
 # Function to read transcript from DOCX file
 def read_transcript(docx_path):
