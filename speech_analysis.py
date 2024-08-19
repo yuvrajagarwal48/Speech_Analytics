@@ -8,18 +8,7 @@ from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
 from textblob import TextBlob
 import nltk
-import spacy
-import subprocess
 
-# Try to load the spaCy model, and if not found, download it
-# try:
-#     nlp = spacy.load("en_core_web_sm")
-# except OSError:
-#     st.warning("Downloading spaCy model 'en_core_web_sm'...")
-#     subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
-#     nlp = spacy.load("en_core_web_sm")
-spacy.cli.download("en_core_web_sm")
-nlp = spacy.load("en_core_web_sm")
 nltk.download('punkt')
 
 # Function to read transcript from DOCX file
@@ -63,18 +52,17 @@ def analyze_tone(text):
 
 # Function to calculate question frequency
 def calculate_question_frequency(sentences):
-    question_sentences = [sentence for sentence in sentences if sentence.text.strip().endswith('?')]
+    question_sentences = [sentence for sentence in sentences if sentence.strip().endswith('?')]
     return len(question_sentences)
 
 # Function to analyze text
-def analyze_text(text, duration_minutes):
-    doc = nlp(text.lower())  # Process text in lower case
-    words = [token.text for token in doc if token.is_alpha]
-    filler_words = [token.text for token in doc if token.text.lower() in ["uh", "um", "you know", "like", "er", "ah", "so", "actually", "basically", "right", "well", "you see", "i mean", "sort of"]]
+def analyze_text(text):
+    sentences = nltk.sent_tokenize(text)
+    words = nltk.word_tokenize(text)
+    filler_words = [word for word in words if word.lower() in ["uh", "um", "you know", "like", "er", "ah", "so", "actually", "basically", "right", "well", "you see", "i mean", "sort of"]]
     word_freq = Counter(words)
     filler_freq = Counter(filler_words)
-    sentences = list(doc.sents)
-    avg_sentence_length = sum(len(sentence) for sentence in sentences) / len(sentences) if sentences else 0
+    avg_sentence_length = sum(len(sentence.split()) for sentence in sentences) / len(sentences) if sentences else 0
 
     # Calculate additional metrics
     total_words = len(words)
