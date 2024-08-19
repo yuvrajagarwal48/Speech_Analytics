@@ -27,6 +27,7 @@ import nltk
 
 
 nltk.download('punkt',quiet=True)
+nltk.download('punkt_tab',quiet=True)
 nltk.download('averaged_perceptron_tagger',quiet=True)
 
 # Function to read transcript from DOCX file
