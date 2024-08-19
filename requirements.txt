@@ -6,3 +6,4 @@ sumy==0.11.0
 textblob==0.18.0.post0
 nltk==3.8.1
 spacy==3.7.4
+numpy==1.24.3
